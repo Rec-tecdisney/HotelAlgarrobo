@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F7">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Habitaciones Disponibles"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#003366"
+            android:layout_marginBottom="20dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardSuite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="6dp"
+            android:layout_marginBottom="16dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/suite1" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Suite" android:textSize="18sp" android:textStyle="bold" android:textColor="#333333"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Kiosco amplio y abierto • Vista panorámica al bosque y montaña • Hamaca • Sensación romántica y tranquila • Jacuzzi" android:textColor="#757575"/>
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="$250.000 / noche" android:textAlignment="viewEnd" android:textColor="#D4AF37" android:textStyle="bold" android:layout_marginTop="8dp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardHabitación_Doble"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="6dp"
+            android:layout_marginBottom="16dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/habitacion_2"/>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Habitación Doble" android:textSize="18sp" android:textStyle="bold" android:textColor="#333333"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Inspirada en nuestra culturas llanera • Esta Habitación te ofrece comodidad • Descanso y una vista espectacular al atardecer llanero • Wi-Fi" android:textColor="#757575"/>
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="$180.000 / noche" android:textAlignment="viewEnd" android:textColor="#D4AF37" android:textStyle="bold" android:layout_marginTop="8dp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardHabitación_Estándar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="6dp"
+            android:layout_marginBottom="16dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/habitacion_3" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Habitación Estándar" android:textSize="18sp" android:textStyle="bold" android:textColor="#333333"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cama Matrimonial • TV Cable • Aire Acondicionado" android:textColor="#757575"/>
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="$120.000 / noche" android:textAlignment="viewEnd" android:textColor="#D4AF37" android:textStyle="bold" android:layout_marginTop="8dp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardCabaña_Familiar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="6dp"
+            android:layout_marginBottom="16dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/familiar_tipo2" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cabaña Familiar" android:textSize="18sp" android:textStyle="bold" android:textColor="#333333"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Capacidad 6 personas • Cocina • Parrilla" android:textColor="#757575"/>
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="$350.000 / noche" android:textAlignment="viewEnd" android:textColor="#D4AF37" android:textStyle="bold" android:layout_marginTop="8dp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</ScrollView>
