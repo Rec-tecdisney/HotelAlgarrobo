@@ -10,53 +10,58 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class DetailActivity extends AppCompatActivity {
 
-    // 1. Declarar las variables para los textos (fuera del onCreate)
+    // 1. Añadimos el ImageView a las declaraciones
     TextView tvNombre, tvPrecio, tvDescripcion;
+    android.widget.ImageView imgHabitacion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail2); // El layout que tienes en la imagen
+        setContentView(R.layout.activity_detail3);
 
-        // 2. Vincular con los IDs del XML
-        // Revisa que estos IDs (tvNombreDetalle, etc) existan en tu activity_detail2.xml
+        // 1. Vinculación de componentes
         tvNombre = findViewById(R.id.tvNombreDetalle);
         tvPrecio = findViewById(R.id.tvPrecioDetalle);
         tvDescripcion = findViewById(R.id.tvDescripcionDetalle);
+        imgHabitacion = findViewById(R.id.imgDetalle);
+        Button miBoton = findViewById(R.id.btnReservarAhora);
 
-        // 3. RECIBIR LOS DATOS (La parte clave)
+        // 2. Recepción de datos
         String nombre = getIntent().getStringExtra("h_nombre");
         String precio = getIntent().getStringExtra("h_precio");
         String desc = getIntent().getStringExtra("h_desc");
+        String tipo = getIntent().getStringExtra("h_tipo");
 
-        // 4. Mostrar los datos si no son nulos
+        // 3. Lógica para mostrar la información
         if (nombre != null) {
             tvNombre.setText(nombre);
             tvPrecio.setText(precio);
             tvDescripcion.setText(desc);
 
-        // Tu código del botón de reserva que ya tienes (Línea 17 en tu imagen)
-            Button miBoton = findViewById(R.id.btnReservarAhora);
-
-            if (miBoton != null) {
-                miBoton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // 1. Log de confirmación
-                        android.widget.Toast.makeText(DetailActivity.this, "Iniciando Salto...", android.widget.Toast.LENGTH_SHORT).show();
-
-                        // 2. Definir el Intent con el contexto explícito
-                        Intent intent = new Intent(v.getContext(), BookingActivity.class);
-
-                        // 3. Pasar el dato (asegúrate que la variable 'nombre' tenga algo)
-                        intent.putExtra("h_nombre_reserva", nombre);
-
-                        // 4. EJECUTAR EL SALTO
-                        v.getContext().startActivity(intent);
-                    }
-                });
+            // --- AQUÍ ESTÁ LA PARTE QUE FALTABA COMPLETAR ---
+            if (tipo != null && imgHabitacion != null) {
+                if (tipo.equals("suite")) {
+                    imgHabitacion.setImageResource(R.drawable.suite1);
+                }
+                else if (tipo.equals("familiar")) {
+                    imgHabitacion.setImageResource(R.drawable.habitacion_familiar);
+                }
+                else if (tipo.equals("doble")) {
+                    // Usamos el nombre del archivo que vi en tu carpeta drawable
+                    imgHabitacion.setImageResource(R.drawable.habitacion_2);
+                }
+                else if (tipo.equals("estandar")) {
+                    imgHabitacion.setImageResource(R.drawable.habitacion_3);
+                }
             }
         }
-    }
 
-}
+        // 4. Botón de reserva
+        if (miBoton != null) {
+            miBoton.setOnClickListener(v -> {
+                Intent intent = new Intent(DetailActivity.this, BookingActivity.class);
+                intent.putExtra("h_nombre_reserva", nombre);
+                startActivity(intent);
+            });
+        }
+    }}
