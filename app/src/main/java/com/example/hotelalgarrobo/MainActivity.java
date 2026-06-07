@@ -9,50 +9,63 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+    // 1. Variables globales para las fechas
+    private String fechaEntrada = "";
+    private String fechaSalida = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // 2. Referencias a los botones de Entrada y Salida
+        Button btnIn = findViewById(R.id.btnCheckIn);
+        Button btnOut = findViewById(R.id.btnCheckOut);
         Button btnBuscar = findViewById(R.id.btnSearch);
 
-        btnBuscar.setOnClickListener(new View.OnClickListener() {
+        // 3. Lógica para Check-in
+        btnIn.setOnClickListener(v -> abrirCalendario(fecha -> {
+            fechaEntrada = fecha;
+            btnIn.setText("Entrada: " + fecha);
+        }));
 
-            @Override
-            public void onClick(View v) {
-                // 1. Creamos la "Intención" de saltar de la pantalla actual a la de resultados
+        // 4. Lógica para Check-out
+        btnOut.setOnClickListener(v -> abrirCalendario(fecha -> {
+            fechaSalida = fecha;
+            btnOut.setText("Salida: " + fecha);
+        }));
+
+        // 5. El botón BUSCAR ahora puede validar que las fechas existan y las envía
+        btnBuscar.setOnClickListener(v -> {
+            if (fechaEntrada.isEmpty() || fechaSalida.isEmpty()) {
+                android.widget.Toast.makeText(this, "Por favor selecciona ambas fechas", android.widget.Toast.LENGTH_SHORT).show();
+            } else {
                 Intent intent = new Intent(MainActivity.this, ResultsActivity.class);
-                startActivity(intent);
 
-              }
+                // EXTRA: Empaquetamos las fechas para el viaje
+                intent.putExtra("f_entrada", fechaEntrada);
+                intent.putExtra("f_salida", fechaSalida);
+
+                startActivity(intent);
+            }
         });
-        // --- CÓDIGO PARTE 1 ---
-        Button btnFechas = findViewById(R.id.btnSelectDates);
-        if (btnFechas != null) {
-            btnFechas.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    abrirCalendario();
-                }
-            });
+
         }
-    }
-    // Este es el método que "cura" el error rojo de la línea 37
-    private void abrirCalendario() {
+
+    // 6. El método del calendario (mantenlo como lo teníamos)
+    private void abrirCalendario(OnDateSelectedListener listener) {
         final java.util.Calendar c = java.util.Calendar.getInstance();
         int anio = c.get(java.util.Calendar.YEAR);
         int mes = c.get(java.util.Calendar.MONTH);
         int dia = c.get(java.util.Calendar.DAY_OF_MONTH);
 
-        android.app.DatePickerDialog datePickerDialog = new android.app.DatePickerDialog(this,
-                (view, year, monthOfYear, dayOfMonth) -> {
-                    // Aquí se guarda la fecha seleccionada
-                    String fecha = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
-                    Button btnFechas = findViewById(R.id.btnSelectDates);
-                    if (btnFechas != null) {
-                        btnFechas.setText("📅 " + fecha);
-                    }
-                }, anio, mes, dia);
-        datePickerDialog.show();
+        new android.app.DatePickerDialog(this, (view, year, month, day) -> {
+            String fecha = day + "/" + (month + 1) + "/" + year;
+            listener.onDateSelected(fecha);
+        }, anio, mes, dia).show();
+    }
+
+    interface OnDateSelectedListener {
+        void onDateSelected(String fecha);
     }
 }

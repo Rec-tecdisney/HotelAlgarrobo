@@ -56,6 +56,31 @@
         android:inputType="phone"
         android:layout_marginBottom="30dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Número de personas:"
+        android:textColor="#757575"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:id="@+id/etPersonas"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Ej: 2"
+        android:inputType="number"
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:id="@+id/tvTotalPagar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="Total a pagar: Calcular..."
+        android:textColor="#003366"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
     <Button
         android:id="@+id/btnConfirmarReserva"
         android:layout_width="match_parent"
