@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
               }
         });
-        // --- CÓDIGO PARTE 1 ---
+        
         Button btnFechas = findViewById(R.id.btnSelectDates);
         if (btnFechas != null) {
             btnFechas.setOnClickListener(new View.OnClickListener() {
