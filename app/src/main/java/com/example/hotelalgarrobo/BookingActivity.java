@@ -46,13 +46,11 @@ public class BookingActivity extends AppCompatActivity {
             btnConfirmar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    confirmarReserva(); // Ahora sí lo encontrará
+                    confirmarReserva(); 
                 }
             });
         }
-    } // <--- AQUÍ CIERRA EL ONCREATE
-
-    // 5. EL MÉTODO DEBE IR AQUÍ AFUERA
+    } 
     private void confirmarReserva() {
         String nombre = inputNombre.getText().toString().trim();
         String email = inputEmail.getText().toString().trim();
