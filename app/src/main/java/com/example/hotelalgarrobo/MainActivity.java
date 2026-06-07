@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Intent intent = new Intent(MainActivity.this, ResultsActivity.class);
 
-                // EXTRA: Empaquetamos las fechas para el viaje
+                //Empaquetamos las fechas para el viaje
                 intent.putExtra("f_entrada", fechaEntrada);
                 intent.putExtra("f_salida", fechaSalida);
 
@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-    // 6. El método del calendario (mantenlo como lo teníamos)
     private void abrirCalendario(OnDateSelectedListener listener) {
         final java.util.Calendar c = java.util.Calendar.getInstance();
         int anio = c.get(java.util.Calendar.YEAR);

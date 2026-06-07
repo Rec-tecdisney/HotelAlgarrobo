@@ -35,7 +35,6 @@ public class DetailActivity extends AppCompatActivity {
         String desc = getIntent().getStringExtra("h_desc");
         String tipo = getIntent().getStringExtra("h_tipo");
 
-        // EXTRA: RECIBIMOS las fechas en este segundo puente
         fechaEntradaPasada = getIntent().getStringExtra("f_entrada");
         fechaSalidaPasada = getIntent().getStringExtra("f_salida");
 
@@ -61,16 +60,16 @@ public class DetailActivity extends AppCompatActivity {
             }
         }
 
-        // 4. Botón de reserva (Modificado para enviar nombre, FECHAS Y PRECIO)
+        // 4. Botón de reserva
         if (miBoton != null) {
             miBoton.setOnClickListener(v -> {
                 Intent intent = new Intent(DetailActivity.this, BookingActivity.class);
                 intent.putExtra("h_nombre_reserva", nombre);
 
-                // EXTRA: Enviamos el precio dinámico (ej: "$120.000")
+                //Enviamos el precio dinámico (ej: "$120.000")
                 intent.putExtra("h_precio_reserva", precio);
 
-                // EXTRA: Enviamos las fechas al destino final
+                //Enviamos las fechas al destino final
                 intent.putExtra("f_entrada", fechaEntradaPasada);
                 intent.putExtra("f_salida", fechaSalidaPasada);
 

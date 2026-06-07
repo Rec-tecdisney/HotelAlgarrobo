@@ -43,7 +43,7 @@ public class ResultsActivity extends AppCompatActivity {
         intent.putExtra("h_desc", info);
         intent.putExtra("h_tipo", tipo);
 
-        // EXTRA: Volvemos a empacar las fechas para que sigan su viaje
+        //Volvemos a empacar las fechas para que sigan su viaje
         intent.putExtra("f_entrada", fechaEntradaPasada);
         intent.putExtra("f_salida", fechaSalidaPasada);
 

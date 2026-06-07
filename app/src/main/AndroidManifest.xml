@@ -12,8 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HotelAlgarrobo">
         <activity
+            android:name=".ReceiptActivity"
+            android:exported="false" />
+        <activity
             android:name=".BookingActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".DetailActivity"
             android:exported="false" />

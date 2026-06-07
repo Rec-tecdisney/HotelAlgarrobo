@@ -38,7 +38,7 @@ public class BookingActivity extends AppCompatActivity {
         String fechaEntrada = getIntent().getStringExtra("f_entrada");
         String fechaSalida = getIntent().getStringExtra("f_salida");
 
-        // EXTRA DE INTERACTIVIDAD: Recalcular el total si el usuario cambia el número de personas
+        // Recalcular el total si el usuario cambia el número de personas
         if (inputPersonas != null) {
             inputPersonas.addTextChangedListener(new android.text.TextWatcher() {
                 @Override
@@ -46,7 +46,7 @@ public class BookingActivity extends AppCompatActivity {
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    // Cada vez que el texto cambie, volvemos a ejecutar la matemática
+
                     calcularPrecioTotal(fechaEntrada, fechaSalida, precioHabitacion);
                 }
 
@@ -75,8 +75,7 @@ public class BookingActivity extends AppCompatActivity {
         }
     }
 
-    // Lógica matemática para calcular la estadía (Ya te funciona perfecto)
-    // 5. MÉTODO OPTIMIZADO: Lógica de negocio con cobro por huésped adicional
+    // 5.  Lógica de negocio con cobro por huésped adicional
     private void calcularPrecioTotal(String entradaStr, String salidaStr, String precioStr) {
         if (tvTotalPagar == null || precioStr == null) return;
 
@@ -98,15 +97,14 @@ public class BookingActivity extends AppCompatActivity {
                 int precioPorNoche = Integer.parseInt(precioLimpio);
 
                 // D. LEER CANTIDAD DE PERSONAS PARA EL ADICIONAL
-                int cantidadPersonas = 1; // Por defecto mínimo 1
+                int cantidadPersonas = 1;
                 if (inputPersonas != null && !inputPersonas.getText().toString().trim().isEmpty()) {
                     cantidadPersonas = Integer.parseInt(inputPersonas.getText().toString().trim());
                 }
 
-                // E. APLICAR REGLA DE NEGOCIO (QA)
                 long costoBaseTotal = diasEstadia * precioPorNoche;
                 long costoAdicionalTotal = 0;
-                int TARIFA_PERSONA_EXTRA = 40000; // $40.000 COP por noche extra
+                int TARIFA_PERSONA_EXTRA = 40000;
 
                 if (cantidadPersonas > 2) {
                     int personasExtras = cantidadPersonas - 2;
@@ -116,11 +114,9 @@ public class BookingActivity extends AppCompatActivity {
 
                 long costoFinal = costoBaseTotal + costoAdicionalTotal;
 
-                // F. Formateamos la respuesta para la interfaz
                 java.text.DecimalFormat formateador = new java.text.DecimalFormat("#,###");
                 String costoFormateado = formateador.format(costoFinal);
 
-                // Construimos un desglose claro para el usuario
                 String mensajeResumen = "Estadía total: " + diasEstadia + " noche(s)\n";
                 if (costoAdicionalTotal > 0) {
                     mensajeResumen += "Incluye cargo por personas extras\n";
@@ -134,17 +130,17 @@ public class BookingActivity extends AppCompatActivity {
         }
     }
 
-    // 5. ACTUALIZAMOS EL MÉTODO DE CONFIRMACIÓN (Con captura, filtros y guardado NoSQL/SharedPreferences)
+    // 5. ACTUALIZAMOS EL MÉTODO DE CONFIRMACIÓN
     private void confirmarReserva() {
         String nombre = inputNombre.getText().toString().trim();
         String email = inputEmail.getText().toString().trim();
         String telefono = inputTelefono.getText().toString().trim();
-        String personas = inputPersonas.getText().toString().trim(); // <--- CAPTURA NUEVA
+        String personas = inputPersonas.getText().toString().trim();
 
         String resumenHabi = tvTitulo.getText().toString();
         String resumenPago = tvTotalPagar.getText().toString();
 
-        // FILTROS DE VALIDACIÓN (QA)
+        // FILTROS DE VALIDACIÓN
         if (nombre.isEmpty()) {
             inputNombre.setError("Escribe tu nombre");
             inputNombre.requestFocus();
@@ -158,7 +154,7 @@ public class BookingActivity extends AppCompatActivity {
             inputTelefono.setError("Escribe tu teléfono");
             inputTelefono.requestFocus();
         }
-        // FILTRO NUEVO: Validamos que no quede vacío ni coloquen cero personas
+        // Validamos que no quede vacío ni coloquen cero personas
         else if (personas.isEmpty() || personas.equals("0")) {
             inputPersonas.setError("Mínimo 1 persona");
             inputPersonas.requestFocus();
@@ -172,7 +168,7 @@ public class BookingActivity extends AppCompatActivity {
             editor.putString("ultimo_nombre", nombre);
             editor.putString("ultimo_email", email);
             editor.putString("ultimo_telefono", telefono);
-            editor.putString("cant_personas", personas); // <--- GUARDAMOS LAS PERSONAS
+            editor.putString("cant_personas", personas);
             editor.putString("resumen_habitacion", resumenHabi);
             editor.putString("resumen_pago", resumenPago);
 
@@ -184,7 +180,7 @@ public class BookingActivity extends AppCompatActivity {
             Intent intent = new Intent(BookingActivity.this, ReceiptActivity.class);
             startActivity(intent);
 
-            finish(); // Ahora sí cerramos el formulario
+            finish();
         }
     }
 }
