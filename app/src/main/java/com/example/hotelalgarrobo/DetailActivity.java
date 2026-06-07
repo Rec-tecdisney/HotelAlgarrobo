@@ -38,7 +38,7 @@ public class DetailActivity extends AppCompatActivity {
             tvPrecio.setText(precio);
             tvDescripcion.setText(desc);
 
-            // --- AQUÍ ESTÁ LA PARTE QUE FALTABA COMPLETAR ---
+           
             if (tipo != null && imgHabitacion != null) {
                 if (tipo.equals("suite")) {
                     imgHabitacion.setImageResource(R.drawable.suite1);
@@ -47,7 +47,7 @@ public class DetailActivity extends AppCompatActivity {
                     imgHabitacion.setImageResource(R.drawable.habitacion_familiar);
                 }
                 else if (tipo.equals("doble")) {
-                    // Usamos el nombre del archivo que vi en tu carpeta drawable
+                    
                     imgHabitacion.setImageResource(R.drawable.habitacion_2);
                 }
                 else if (tipo.equals("estandar")) {
