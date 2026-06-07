@@ -19,7 +19,7 @@ public class ResultsActivity extends AppCompatActivity {
         CardView c3 = findViewById(R.id.cardHabitación_Estándar);
         CardView c4 = findViewById(R.id.cardCabaña_Familiar);
 
-        // Agregamos el cuarto parámetro: el "tipo" para la imagen
+        
         c1.setOnClickListener(v -> enviarADetalle("Suite de Lujo", "$250.000", "La Suite ofrece el máximo nivel de lujo...", "suite"));
         c2.setOnClickListener(v -> enviarADetalle("Habitación Doble", "$180.000", "Perfecta para viajes de negocios o parejas.", "doble"));
         c3.setOnClickListener(v -> enviarADetalle("Habitación Estandar", "$120.000", "Amplio espacio con cama matrimonial...", "estandar"));
@@ -32,7 +32,7 @@ public class ResultsActivity extends AppCompatActivity {
         intent.putExtra("h_nombre", nombre);
         intent.putExtra("h_precio", precio);
         intent.putExtra("h_desc", info);
-        intent.putExtra("h_tipo", tipo); // <--- ESTO ES LO QUE HACÍA FALTA
+        intent.putExtra("h_tipo", tipo); 
         startActivity(intent);
     }
 }
