@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:background="#F5F5F5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gestión de Reservas (CRUD)"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#2C3E50"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"/>
+
+        <EditText
+            android:id="@+id/etIdReserva"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="ID Reserva (Para consultar/modificar)"
+            android:inputType="number"
+            android:paddingLeft="12dp"
+            android:background="@android:drawable/edit_text"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/etNombreCliente"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Nombre del Cliente"
+            android:inputType="textPersonName"
+            android:paddingLeft="12dp"
+            android:background="@android:drawable/edit_text"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/etFechaEntrada"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Fecha Entrada (DD/MM/AAAA)"
+            android:inputType="date"
+            android:paddingLeft="12dp"
+            android:background="@android:drawable/edit_text"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/etFechaSalida"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Fecha Salida (DD/MM/AAAA)"
+            android:inputType="date"
+            android:paddingLeft="12dp"
+            android:background="@android:drawable/edit_text"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/etCantPersonas"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Número de Personas"
+            android:inputType="number"
+            android:paddingLeft="12dp"
+            android:background="@android:drawable/edit_text"
+            android:layout_marginBottom="20dp"/>
+
+        <Button
+            android:id="@+id/btnCrearReserva"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="1. CREAR RESERVA (Create)"
+            android:backgroundTint="#2E7D32"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnBuscarReserva"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="2. CONSULTAR RESERVA (Read)"
+            android:backgroundTint="#0277BD"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnEditarReserva"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="3. ACTUALIZAR RESERVA (Update)"
+            android:backgroundTint="#F57F17"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnEliminarReserva"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="4. ELIMINAR RESERVA (Delete)"
+            android:backgroundTint="#C62828"
+            android:textColor="#FFFFFF"/>
+
+    </LinearLayout>
+</ScrollView>

@@ -12,14 +12,25 @@
         android:id="@+id/tvWelcome"
         android:layout_width="357dp"
         android:layout_height="39dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
         android:text="Bienvenido al Hotel-Algarrobo"
         android:textColor="@color/primary_blue"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnIrARegistro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="🎁 Registrarse para Promociones"
+        android:textSize="12sp"
+        android:backgroundTint="#2E7D32" android:textColor="#FFFFFF"
+        android:layout_gravity="end"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardSearch"
@@ -98,7 +109,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:backgroundTint="#F0F0F0"
-            android:text="🏢 Hoteles"
+            android:text="🏨 Consultar eventos"
             android:textColor="#003366" />
 
         <Button

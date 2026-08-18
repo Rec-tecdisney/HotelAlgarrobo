@@ -77,43 +77,70 @@ public class BookingActivity extends AppCompatActivity {
 
     // 5.  Lógica de negocio con cobro por huésped adicional
     private void calcularPrecioTotal(String entradaStr, String salidaStr, String precioStr) {
+        // A. CONTROL DE ARRANQUE (QA UX): Si las fechas están vacías, no hacemos nada ni alertamos
+        if (entradaStr == null || salidaStr == null || entradaStr.trim().isEmpty() || salidaStr.trim().isEmpty()) {
+            if (tvTotalPagar != null) {
+                tvTotalPagar.setText("Total a Pagar: " + (precioStr != null ? precioStr : "$0") + " (Por noche)");
+                tvTotalPagar.setTextColor(android.graphics.Color.BLACK); // Color neutral por defecto
+            }
+            if (btnConfirmar != null) {
+                btnConfirmar.setEnabled(false); // Bloqueado hasta que elija fechas válidas
+            }
+            return;
+        }
+
         if (tvTotalPagar == null || precioStr == null) return;
 
         try {
-            // A. Convertimos el texto de las fechas a objetos de tipo Date
             SimpleDateFormat formato = new SimpleDateFormat("d/M/yyyy", Locale.getDefault());
             Date fechaIn = formato.parse(entradaStr);
             Date fechaOut = formato.parse(salidaStr);
 
             if (fechaIn != null && fechaOut != null) {
-                // B. Calculamos los días de estadía
+
+                // 🚨 ESCENARIO DE QA: VALIDACIÓN DE FECHA INVERSA (Solo si ya hay fechas cargadas)
+                if (!fechaOut.after(fechaIn)) {
+                    tvTotalPagar.setText("Error: La fecha de salida debe ser posterior a la de entrada.");
+                    tvTotalPagar.setTextColor(android.graphics.Color.RED); // Alerta visual
+                    if (btnConfirmar != null) {
+                        btnConfirmar.setEnabled(false); // Bloquea el paso
+                    }
+                    return;
+                }
+
+                // Si pasan la validación, restauramos la interfaz a su estado activo
+                tvTotalPagar.setTextColor(android.graphics.Color.BLACK);
+                if (btnConfirmar != null) {
+                    btnConfirmar.setEnabled(true);
+                }
+
+                // B. Cálculo de los días de estadía
                 long diferenciaMilisegundos = fechaOut.getTime() - fechaIn.getTime();
                 long diasEstadia = diferenciaMilisegundos / (24 * 60 * 60 * 1000);
 
-                if (diasEstadia <= 0) diasEstadia = 1;
-
-                // C. Limpiamos el precio base por noche (ej: "$120.000" -> 120000)
+                // C. Limpieza del precio por noche
                 String precioLimpio = precioStr.replace("$", "").replace(".", "").trim();
                 int precioPorNoche = Integer.parseInt(precioLimpio);
 
-                // D. LEER CANTIDAD DE PERSONAS PARA EL ADICIONAL
+                // D. Leer cantidad de personas
                 int cantidadPersonas = 1;
                 if (inputPersonas != null && !inputPersonas.getText().toString().trim().isEmpty()) {
                     cantidadPersonas = Integer.parseInt(inputPersonas.getText().toString().trim());
                 }
 
+                // E. Aplicar regla de negocio (Huéspedes adicionales)
                 long costoBaseTotal = diasEstadia * precioPorNoche;
                 long costoAdicionalTotal = 0;
                 int TARIFA_PERSONA_EXTRA = 40000;
 
                 if (cantidadPersonas > 2) {
                     int personasExtras = cantidadPersonas - 2;
-                    // Fórmula: Personas extras X Costo extra por noche X Días de estadía
                     costoAdicionalTotal = (long) personasExtras * TARIFA_PERSONA_EXTRA * diasEstadia;
                 }
 
                 long costoFinal = costoBaseTotal + costoAdicionalTotal;
 
+                // F. Formatear respuesta visual
                 java.text.DecimalFormat formateador = new java.text.DecimalFormat("#,###");
                 String costoFormateado = formateador.format(costoFinal);
 
@@ -129,7 +156,6 @@ public class BookingActivity extends AppCompatActivity {
             tvTotalPagar.setText("Total a Pagar: " + precioStr + " (Por noche)");
         }
     }
-
     // 5. ACTUALIZAMOS EL MÉTODO DE CONFIRMACIÓN
     private void confirmarReserva() {
         String nombre = inputNombre.getText().toString().trim();

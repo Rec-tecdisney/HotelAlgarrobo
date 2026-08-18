@@ -23,6 +23,11 @@ public class MainActivity extends AppCompatActivity {
         Button btnOut = findViewById(R.id.btnCheckOut);
         Button btnBuscar = findViewById(R.id.btnSearch);
 
+        // Referencias a los botones de categorías que definiste en el XML
+        View btnHoteles = findViewById(R.id.btnCategoriaHoteles);
+        View btnRios = findViewById(R.id.btnCategoriaRios);
+        View btnMontana = findViewById(R.id.btnCategoriaMontaña);
+
         // 3. Lógica para Check-in
         btnIn.setOnClickListener(v -> abrirCalendario(fecha -> {
             fechaEntrada = fecha;
@@ -35,14 +40,14 @@ public class MainActivity extends AppCompatActivity {
             btnOut.setText("Salida: " + fecha);
         }));
 
-        // 5. El botón BUSCAR ahora puede validar que las fechas existan y las envía
+        // 5. El botón BUSCAR redirige a la pantalla del CRUD (GestionReservaActivity)
         btnBuscar.setOnClickListener(v -> {
             if (fechaEntrada.isEmpty() || fechaSalida.isEmpty()) {
-                android.widget.Toast.makeText(this, "Por favor selecciona ambas fechas", android.widget.Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Por favor selecciona ambas fechas", Toast.LENGTH_SHORT).show();
             } else {
-                Intent intent = new Intent(MainActivity.this, ResultsActivity.class);
+                Intent intent = new Intent(MainActivity.this, GestionReservaActivity.class);
 
-                //Empaquetamos las fechas para el viaje
+                // Empaquetamos las fechas seleccionadas para enviarlas al CRUD
                 intent.putExtra("f_entrada", fechaEntrada);
                 intent.putExtra("f_salida", fechaSalida);
 
@@ -50,7 +55,36 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Control de calidad para los mensajes de las categorías populares
+        if (btnHoteles != null) {
+            btnHoteles.setOnClickListener(v -> {
+                Toast.makeText(this, "La sección de Consultar eventos se encuentra en construcción", Toast.LENGTH_SHORT).show();
+            });
         }
+
+        if (btnRios != null) {
+            btnRios.setOnClickListener(v -> {
+                Toast.makeText(this, "La categoría Ríos se encuentra en construcción", Toast.LENGTH_SHORT).show();
+            });
+        }
+
+        if (btnMontana != null) {
+            btnMontana.setOnClickListener(v -> {
+                Toast.makeText(this, "La categoría Montaña se encuentra en construcción", Toast.LENGTH_SHORT).show();
+            });
+        }
+
+        // Referenciar el nuevo botón de promociones
+        Button btnIrARegistro = findViewById(R.id.btnIrARegistro);
+
+        // Programar la navegación hacia la pantalla de registro
+        if (btnIrARegistro != null) {
+            btnIrARegistro.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            });
+        }
+    } // Cierre del onCreate
 
     private void abrirCalendario(OnDateSelectedListener listener) {
         final java.util.Calendar c = java.util.Calendar.getInstance();
@@ -67,4 +101,4 @@ public class MainActivity extends AppCompatActivity {
     interface OnDateSelectedListener {
         void onDateSelected(String fecha);
     }
-}
+} // Cierre de la clase MainActivity
